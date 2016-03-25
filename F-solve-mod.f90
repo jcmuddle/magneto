@@ -201,6 +201,7 @@ contains
 
        velc = Create_vector (x_velocity_R(m), y_velocity_R(m), z_velocity_R(m))
        magf = Create_vector (x_magfield_R(m), y_magfield_R(m), z_magfield_R(m))
+       magf_squrd = Dotproduct (magf, magf)
 
        flux_R(m, 1) = density_R(m) * x_velocity_R(m)
        flux_R(m, 2) = flux_R(m, 1) * x_velocity_R(m) + pressure_R(m) - MHDF(2) * (x_magfield_R(m)**2.0D0)
@@ -478,7 +479,7 @@ contains
        z_velocity_S2(m) = roe_temp + (z_velocity_S2(m) / scratch)
 
 
-       scratch = MHDF(-1) * (dsqrt(density_SL1(m) + dsqrt(density_SR1(m))))
+       scratch = MHDF(-1) * (dsqrt(density_SL1(m)) + dsqrt(density_SR1(m)))
 
        roe_temp         = roeavg(MHDF(-2) * density_SL1(m), MHDF(-2) * density_SR1(m), y_magfield_SR1(m), y_magfield_SL1(m))
        y_magfield_S2(m) = MHDF(-2) * dsqrt(density_SL1(m) * density_SR1(m)) * (y_velocity_SR1(m) - y_velocity_SL1(m))

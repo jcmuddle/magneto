@@ -68,10 +68,13 @@ contains
     if (TEST_PROBLEM == 'A') call Set_initial_conditions_A ()     ! --> <TES01>
     if (TEST_PROBLEM == 'B') call Set_initial_conditions_B ()     ! --> <TES02>
     if (TEST_PROBLEM == 'C') call Set_initial_conditions_C ()     ! --> <TES03>
-    if (TEST_PROBLEM == 'D') call Set_initial_conditions_D ()     ! --> <TES04>
+
     if (TEST_PROBLEM == 'E') call Set_initial_conditions_E ()     ! --> <TES05>
     if (TEST_PROBLEM == 'F') call Set_initial_conditions_F ()     ! --> <TES06>
-    if (TEST_PROBLEM == 'X') call Load_restart_files ()           ! --> <TES07>
+    if (TEST_PROBLEM == 'G') call Set_initial_conditions_G ()     ! --> <TES07>
+    if (TEST_PROBLEM == 'H') call Set_initial_conditions_H ()     ! --> <TES08>
+    if (TEST_PROBLEM == 'I') call Set_initial_conditions_I ()     ! --> <TES09>
+    if (TEST_PROBLEM == 'X') call Load_restart_files ()           ! --> <TES10>
 
 
 
@@ -311,8 +314,9 @@ contains
   ! ----------------------------------
 
     if (RECONSTRUCT_TYPE == 'T') call Determine_Riemann_input_TVD       ! --> <REC02>
-    if (RECONSTRUCT_TYPE == 'P') call Determine_Riemann_input_PPM       ! --> <REC03>
-    if (RECONSTRUCT_TYPE == 'C') call Determine_Riemann_input_PPMCS     ! --> <REC04>
+    if (RECONSTRUCT_TYPE == 'L') call Determine_Riemann_input_PLM       ! --> <REC03>
+    if (RECONSTRUCT_TYPE == 'P') call Determine_Riemann_input_PPM       ! --> <REC04>
+    if (RECONSTRUCT_TYPE == 'C') call Determine_Riemann_input_PPMCS     ! --> <REC05>
 
     call Calculate_intercell_fluxes_HLLD ()     ! --> <SOL02>
 

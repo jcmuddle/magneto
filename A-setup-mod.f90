@@ -1,5 +1,5 @@
 ! ----------------------------------------------------------------------------------------------------------------------------------
-! --- Quarkwood Magneto 8.2 --------------------------------------------------------------------------------------------------------
+! --- Quarkwood Magneto 8.21 -------------------------------------------------------------------------------------------------------
 ! ----------------------------------------------------------------------------------------------------------------------------------
 !
 !     A: The Setup Module
@@ -8,6 +8,7 @@
 !
 ! ----------------------------------------------------------------------------------------------------------------------------------
 !
+!     Copyright 2013 Ian Hawke (University of Southampton)
 !     Copyright 2012, 2013 Hari Sriskantha (School of Mathematics, University of Edinburgh).
 !     This file is part of Magneto.
 !
@@ -182,45 +183,23 @@ contains
   subroutine Load_settings ()
 
 
-  ! Declaration of local variables.
-  ! -------------------------------
+  ! Namelist of parameters.
+  ! -----------------------
 
-    character :: heading*130, setting*20
-    integer   :: n
+    namelist /parameters/ &
+         TEST_PROBLEM, OUTPUT_TYPE, &
+         RECONSTRUCT_TYPE, WAVESPEED_TYPE, &
+         VARIABLE_DELTAT, PRINT_DELTAT, PRESSURE_FIX, DEBUG_MODE, &
+         PRINT_FREQ         
 
 
 
-  ! Opening file and loading header.
-  ! --------------------------------
+  ! Reading file.
+  ! -------------
 
     open (100, file = "start.txt")
 
-    do n = 1, 24
-       read (100, *) heading
-    end do
-
-
-
-  ! Loading settings.
-  ! -----------------
-
-    read (100, *) setting, TEST_PROBLEM
-    read (100, *) setting, OUTPUT_TYPE
-
-    read (100, *) setting, RECONSTRUCT_TYPE
-    read (100, *) setting, WAVESPEED_TYPE
-
-    read (100, *) setting, VARIABLE_DELTAT
-    read (100, *) setting, PRINT_DELTAT
-    read (100, *) setting, PRESSURE_FIX
-    read (100, *) setting, DEBUG_MODE
-
-    read (100, *) setting, PRINT_FREQ
-
-
-
-  ! Closing file.
-  ! -------------
+    read(100, nml=parameters)
 
     close (100)
 

@@ -1,5 +1,5 @@
 ! ----------------------------------------------------------------------------------------------------------------------------------
-! --- Quarkwood Magneto 8.2 --------------------------------------------------------------------------------------------------------
+! --- Quarkwood Magneto 8.21 -------------------------------------------------------------------------------------------------------
 ! ----------------------------------------------------------------------------------------------------------------------------------
 !
 !     The Start File
@@ -8,6 +8,7 @@
 !
 ! ----------------------------------------------------------------------------------------------------------------------------------
 !
+!     Copyright 2013 Ian Hawke (University of Southampton)
 !     Copyright 2012, 2013 Hari Sriskantha (School of Mathematics, University of Edinburgh).
 !     This file is part of Magneto.
 !
@@ -26,18 +27,20 @@
 ! ----------------------------------------------------------------------------------------------------------------------------------
 
 
-"TEST_PROBLEM -------", "B"
-"OUTPUT_TYPE --------", "C"
+&parameters
+TEST_PROBLEM = "A",
+OUTPUT_TYPE  = "A",
 
-"RECONSTRUCT_TYPE ---", "P"
-"WAVESPEED_TYPE -----", "J"
+RECONSTRUCT_TYPE = "L",
+WAVESPEED_TYPE   = "M",
 
-"VARIABLE_DELTAT ----", .true.
-"PRINT_DELTAT -------", .true.
-"PRESSURE_FIX -------", .true.
-"DEBUG_MODE ---------", .true.
+VARIABLE_DELTAT = .true.,
+PRINT_DELTAT    = .true.,
+PRESSURE_FIX    = .true.,
+DEBUG_MODE      = .true.,
 
-"PRINT_FREQ ---------", 100
+PRINT_FREQ      = 100
+/
 
 
   ! --------------------------------------------------------------------------------------------------------------------------------
@@ -50,12 +53,14 @@
   !
   !     TEST_PROBLEM :: This setting determines the initial conditions. The options are:
   !     ------------
-  !       = 'A' - Sod's 1D Shock Tube Test (magnetic)
-  !       = 'B' - Circularly Polarised Alfven Waves
-  !       = 'C' - The Blast Problem
-  !       = 'D' - The Orszag-Tang Vortex
-  !       = 'E' - The MHD Rotor Problem
-  !       = 'F' - The Kelvin-Helmholtz Instability
+  !       = 'A' - Brio and Wu's Shock Tube Test
+  !       = 'B' - Ryu and Jones' Shock Tube Test (2A)
+  !       = 'C' - Ryu and Jones' Shock Tube Test (4D)
+  !       = 'E' - Circularly Polarised Alfven Waves
+  !       = 'F' - The Blast Problem
+  !       = 'G' - The Orszag-Tang Vortex
+  !       = 'H' - The MHD Rotor Problem
+  !       = 'I' - The Kelvin-Helmholtz Instability
   !       = 'X' - Load data from restart file
   !     Alternatively, you can create your own subroutine in C-tests-mod.f90, using the existing ones as templates
   !     (and make sure to update the code in G-evolve-mod and H-error-mod so the program recognises any new options...)
@@ -71,6 +76,7 @@
   !     RECONSTRUCT_TYPE :: This setting determines the method used to calculate the input states for the Riemann problem.
   !     ----------------
   !       = 'T' - Balsara's TVD Scheme with steepening (second-order)
+  !       = 'L' - Piecewise Linear Method (second-order) - based on Stone et al., Astrophys. J. Suppl. S., 178, 137 (2008)
   !       = 'P' - Piecewise Parabolic Method (third-order) - based on Stone et al., Astrophys. J. Suppl. S., 178, 137 (2008)
   !       = 'C' - Piecewise Parabolic Method (third-order) - based on Colella and Sekora, J. Comput. Phys., 227, 7069 (2008)
   !
